@@ -1,0 +1,104 @@
+<!-- 共通テンプレートを継承 -->
+{% extends 'homepage/base.html' %}
+
+<!-- タブに表示される名前 -->
+{% block title %}IDEAL ROOM{% endblock %}
+
+{% load static %}<!-- Django用のスタティックフォルダアクセス用タグ読み込み -->
+{% block content %}
+
+    <!-- 本文のブロック -->
+    <div class="contener"><!-- クラスを2つ指定 css用 -->            
+
+        <!-- ヘッダー画像用のグループ -->
+        <div class="header_img">
+            <img src="{% static 'img/cat.jpg' %}" alt=""><!-- 説明がなければaltは必要ない -->
+        </div>
+
+        <p>その道のエキスパートと買う。<br>
+            間違いないコーディネータ選択で、<br>
+            お部屋での生活がもっと楽しくなる。</p>
+
+        <div class="touroku_link">
+            <span id="touroku">
+                <a href="{% url 'homepage:register' %}">登録はこちらから</a><!-- リンク -->
+            </span>
+        </div>
+
+        <!-- 事業内容のグループ -->
+        <!-- ３つのサービス全体を囲むためのグループを作る -->
+        <div class="container_service">
+
+            <h1>あなたにぴったりのコーディネーターを探そう！</h1><!-- 見出し h1が無いので階層にするために上に作る（仮にロゴの下の文をh1とする） -->
+            
+            <!-- ３つのサービスを囲むためのグループを作る -->
+            <div class="service_block">
+                {% for coordinator in coordinator_list %}
+                <div class="service">
+                    <img src="{% static 'img/'|add:coordinator.picture %}" alt="サービス１"><!-- 画像 パスとquerySetを結合-->
+                    <div class="ttl">{{ coordinator.name }}</div><!-- タイトル -->
+                    <div class="frgn">{{ coordinator.furigana }}</div><!-- タイトル -->
+                    <!-- <div class="explain">{{ coordinator.text }}</div><!-- 説明文 --> -->
+                    <a href="">Profile</a><!-- リンク -->
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="service_block">
+                {% for coordinator in coordinator_list2 %}
+                <div class="service">
+                    <img src="{% static 'img/'|add:coordinator.picture %}" alt="サービス１"><!-- 画像 -->
+                    <div class="ttl">{{ coordinator.name }}</div><!-- タイトル -->
+                    <!-- <div class="explain">{{ coordinator.text }}</div><!-- 説明文 --> -->
+                    <a href="">Profile</a><!-- リンク -->
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="coordinator_link">
+            <span id="link">
+                <a href="{% url 'homepage:coordinator' %}">Other Coordinator</a><!-- リンク -->
+            </span>
+        </div>
+
+        <!-- 本文 -->
+
+
+        <!-- ３つのサービス全体を囲むためのグループを作る -->
+        <div class="service_group">
+
+            <h2>How to Use</h2>
+
+            <div class="service_block">
+                <div class="service">
+                    <a href="{% url 'homepage:register' %}"><img src="" alt="写真１"></a><!-- 画像 パスとquerySetを結合-->
+                    <div class="ttl">どんな部屋が好みか<br>教えてください</div><!-- タイトル -->
+                    <div class="explain">質問に答えて頂くことで、<br>あなたに最適な<br>コーディネーターを提案します。</div><!-- 説明文 -->
+                    
+                    
+                </div>
+                <div class="service">
+                    <img src="" alt="写真２"><!-- 画像 パスとquerySetを結合-->
+                    <div class="ttl">コーディネーターと<br>LINEで相談</div><!-- タイトル -->
+                    <div class="explain">希望通りのデザインを<br>納得いくまで相談できます。</div><!-- 説明文 -->
+                    
+                    
+                </div>
+                <div class="service">
+                    <img src="" alt="写真３"><!-- 画像 パスとquerySetを結合-->
+                    <div class="ttl">継続的なサポート<br>　</div><!-- タイトル -->
+                    <div class="explain">コーディネーターが見つかったら<br>継続的にサポートを依頼しよう。</div><!-- 説明文 -->
+                    
+                    
+                </div>
+            </div>
+
+
+
+        
+    </div>
+
+
+{% endblock %} 

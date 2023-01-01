@@ -1,0 +1,74 @@
+<!-- 共通テンプレート -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- 表示される幅についての規定 -->
+    <title>{% block title %}{% endblock %}</title><!-- タブに表示される名前 テンプレートタグを使用 -->
+    <meta name="description" content="IDEAL ROOM です。よろしくお願いします。"><!-- 検索した時に表示される表示内容 -->
+    {% load static %}<!-- Django用のスタティックフォルダアクセス用タグ読み込み -->
+    <link rel="stylesheet" href="{% static 'the-new-css-reset/css/reset.css' %}"><!-- reset.cssのディレクトリの相対パス -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"><!-- cssのディレクトリの相対パス -->
+    
+</head>
+
+
+<body>
+
+    <!-- まとめて扱うためにヘッダ部分をグルーピングする -->
+    <header class="header"><!-- クラスを2つ指定 css用 -->
+
+        <!-- まとめて扱うためにロゴ部分をグルーピングする -->
+        <div class="logo">
+            <!-- <img src="{% static 'img/logo.png' %}" alt="IDEAL ROOM"> -->
+            <!-- altは表示されない時の代替 -->
+            <h1>IDEAL ROOM</h1><!-- ロゴの下の文字 -->
+        </div>
+        
+        <!-- メニュー リスト 順番を明示しない -->
+        <nav>
+        <ul>
+            <!-- リスト リンクをつけたいのでaタグを入れておく -->
+            <!-- リンクはURLのハードコーディングを避けるため、名前空間を作成 -->
+            <li><a href="{% url 'homepage:top' %}">トップ</a></li>
+            <li><a href="{% url 'homepage:coordinator' %}">コーディネーター</a></li>
+            <li><a href="{% url 'homepage:register' %}">新規登録</a></li>
+            <!-- <li><a href=""></a></li> -->
+            <li><a href="{% url 'homepage:aboutus' %}">会社概要</a></li>
+            <li><a href="{% url 'homepage:contact' %}">お問合せ</a></li>
+        </ul>
+        </nav>
+    
+    </header>
+
+
+    <!-- 本文のブロック -->
+    {% block content %}{% endblock %}
+    
+
+
+    <!-- フッターのグループ -->
+    <footer class="footer">
+
+        <div class="item-list">
+            <div class="item">
+                <a href="{% url 'homepage:terms_of_service' %}">利用規約</a>
+            </div>
+            <div class="item">
+                <a href="{% url 'homepage:privacy_policy' %}">プライバシーポリシー</a>
+            </div>
+        </div>
+
+        <div class="copy">
+            &copy;2022 EVERY DAY
+        </div>
+
+    </footer>
+
+</body>
+
+
+
+</html>

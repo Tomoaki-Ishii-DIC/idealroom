@@ -1,0 +1,25 @@
+<!-- 共通テンプレートを継承 -->
+{% extends 'homepage/base.html' %}
+
+<!-- タブに表示される名前 -->
+{% block title %}IDEAL ROOM{% endblock %}
+
+{% load static %}<!-- Django用のスタティックフォルダアクセス用タグ読み込み -->
+{% block content %}
+
+    <!-- 本文のブロック -->
+    <div class="contener"><!-- クラスを2つ指定 css用 -->            
+
+        <!-- 事業内容のグループ -->
+        <!-- ３つのサービス全体を囲むためのグループを作る -->
+        <div class="container_service">
+
+            <h1>利用規約！</h1><!-- 見出し h1が無いので階層にするために上に作る（仮にロゴの下の文をh1とする） -->
+
+        </div>
+    </div>
+        <!-- 本文 -->
+
+
+
+{% endblock %} 

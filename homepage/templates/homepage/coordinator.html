@@ -1,0 +1,50 @@
+<!-- 共通テンプレートを継承 -->
+{% extends 'homepage/base.html' %}
+
+<!-- タブに表示される名前 -->
+{% block title %}IDEAL ROOM{% endblock %}
+
+{% load static %}<!-- Django用のスタティックフォルダアクセス用タグ読み込み -->
+{% block content %}
+
+    <!-- 本文のブロック -->
+    <div class="contener"><!-- クラスを2つ指定 css用 -->            
+
+        <!-- 事業内容のグループ -->
+        <!-- ３つのサービス全体を囲むためのグループを作る -->
+        <div class="container_service">
+
+            <h1>あなたにぴったりのコーディネーターを探そう！</h1><!-- 見出し h1が無いので階層にするために上に作る（仮にロゴの下の文をh1とする） -->
+            
+            <!-- ３つのサービスを囲むためのグループを作る -->
+            <div class="service_block">
+                {% for coordinator in coordinator_list %}
+                <div class="service">
+                    <img src="{% static 'img/'|add:coordinator.picture %}" alt="サービス１"><!-- 画像 パスとquerySetを結合-->
+                    <div class="ttl">{{ coordinator.name }}</div><!-- タイトル -->
+                    <div class="frgn">{{ coordinator.furigana }}</div><!-- タイトル -->
+                    <div class="explain">{{ coordinator.text }}</div><!-- 説明文 -->
+                    <a href="">Profile</a><!-- リンク -->
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="service_block">
+                {% for coordinator in coordinator_list2 %}
+                <div class="service">
+                    <img src="{% static 'img/'|add:coordinator.picture %}" alt="サービス１"><!-- 画像 -->
+                    <div class="ttl">{{ coordinator.name }}</div><!-- タイトル -->
+                    <div class="frgn">{{ coordinator.furigana }}</div><!-- タイトル -->
+                    <div class="explain">{{ coordinator.text }}</div><!-- 説明文 -->
+                    <a href="">Profile</a><!-- リンク -->
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+        <!-- 本文 -->
+
+
+
+{% endblock %} 
